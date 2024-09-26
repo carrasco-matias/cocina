@@ -42,9 +42,10 @@ class CategoriaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Categoria $categoria)
+    public function show($id)
     {
-        //
+        $categoria = Categoria::findOrFail($id);
+        dd($categoria);
     }
 
     /**

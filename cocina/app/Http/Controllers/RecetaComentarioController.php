@@ -42,9 +42,10 @@ class RecetaComentarioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Receta_Comentario $receta_Comentario)
+    public function show($id)
     {
-        //
+        $receta_comentario = RecetaComentario::findOrFail($id);
+        dd($receta_comentario);
     }
 
     /**

@@ -45,7 +45,7 @@ class RecetaController extends Controller
     public function show($id)
     {
         $receta = Receta::findOrFail($id);
-        dd($receta->name);
+        dd($receta);
     }
 
     /**

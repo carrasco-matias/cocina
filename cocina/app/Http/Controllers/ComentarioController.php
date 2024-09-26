@@ -42,9 +42,10 @@ class ComentarioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Comentario $comentario)
+    public function show($id)
     {
-        //
+        $comentario = Comentario::findOrFail($id);
+        dd($comentario);
     }
 
     /**

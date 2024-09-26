@@ -42,9 +42,10 @@ class RecetaIngredienteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Receta_Ingrediente $receta_Ingrediente)
+    public function show($id)
     {
-        //
+        $receta_ingrediente = RecetaIngrediente::findOrFail($id);
+        dd($receta_ingrediente);
     }
 
     /**

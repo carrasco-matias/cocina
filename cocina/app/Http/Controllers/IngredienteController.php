@@ -42,9 +42,10 @@ class IngredienteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Ingrediente $ingrediente)
+    ppublic function show($id)
     {
-        //
+        $ingrediente = Ingrediente::findOrFail($id);
+        dd($ingrediente);
     }
 
     /**
