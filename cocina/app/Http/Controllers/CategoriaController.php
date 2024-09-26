@@ -16,7 +16,7 @@ class CategoriaController extends Controller
         echo "<br><h1>Mantenedor categorias</h1><br>";
 
         foreach (Categoria::all() as $categoria) {
-            echo $categoria;
+            echo $categoria->nombre_categoria;
             echo "<br>";
         }
         
@@ -45,7 +45,7 @@ class CategoriaController extends Controller
     public function show($id)
     {
         $categoria = Categoria::findOrFail($id);
-        dd($categoria);
+        echo $categoria->nombre_categoria;
     }
 
     /**

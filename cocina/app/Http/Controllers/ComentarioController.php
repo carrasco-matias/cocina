@@ -16,7 +16,7 @@ class ComentarioController extends Controller
         echo "<br><h1>Mantenedor comentarios</h1><br>";
 
         foreach (Comentario::all() as $comentario) {
-            echo $comentario;
+            echo $comentario->contenido;
             echo "<br>";
         }
         
@@ -45,7 +45,7 @@ class ComentarioController extends Controller
     public function show($id)
     {
         $comentario = Comentario::findOrFail($id);
-        dd($comentario);
+        dd($comentario->contenido);
     }
 
     /**

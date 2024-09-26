@@ -16,7 +16,7 @@ class RecetaController extends Controller
         echo "<br><h1>Mantenedor receta</h1><br>";
 
         foreach (Receta::all() as $receta) {
-            echo $receta;
+            echo $receta->nombre_receta;
             echo "<br>";
         }
         
@@ -45,7 +45,7 @@ class RecetaController extends Controller
     public function show($id)
     {
         $receta = Receta::findOrFail($id);
-        dd($receta);
+        echo $receta->nombre_receta;
     }
 
     /**

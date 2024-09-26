@@ -18,7 +18,7 @@ class UserController extends Controller
         echo "<br><h1>Mantenedor usuarios</h1><br>";
 
         foreach (User::all() as $user) {
-            echo $user;
+            echo $user->name;
             echo "<br>";
         }
         
@@ -47,7 +47,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-        dd($user);
+        echo $user->name;
     }
 
     /**

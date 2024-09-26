@@ -16,7 +16,7 @@ class IngredienteController extends Controller
         echo "<br><h1>Mantenedor ingredientes</h1><br>";
 
         foreach (Ingrediente::all() as $ingrediente) {
-            echo $ingrediente;
+            echo $ingrediente->nombre_ingrediente;
             echo "<br>";
         }
         
@@ -42,10 +42,10 @@ class IngredienteController extends Controller
     /**
      * Display the specified resource.
      */
-    ppublic function show($id)
+    public function show($id)
     {
         $ingrediente = Ingrediente::findOrFail($id);
-        dd($ingrediente);
+        echo $ingrediente->nombre_ingrediente;
     }
 
     /**
