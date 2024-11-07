@@ -2,73 +2,42 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Categoria;
-use App\Http\Requests\StoreCategoriaRequest;
-use App\Http\Requests\UpdateCategoriaRequest;
 
 class CategoriaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        echo "<br><h1>Mantenedor categorias</h1><br>";
-
-        foreach (Categoria::all() as $categoria) {
-            echo $categoria->nombre_categoria;
-            echo "<br>";
-        }
-        
-        return view('mantenedores.categoria.index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreCategoriaRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
     public function show($id)
-    {
-        $categoria = Categoria::findOrFail($id);
-        echo $categoria->nombre_categoria;
-    }
+   {
+       return view('categoria', [
+           'categoria' => categoria::where('id', '=', $id)->first()
+       ]);
+   }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Categoria $categoria)
-    {
-        //
-    }
+   public function store(Request $request)
+   {
+       $categoria = new categoria;
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateCategoriaRequest $request, Categoria $categoria)
-    {
-        //
-    }
+       $categoria->nombre_categoria = $request->nombre_categoria;
+       $categoria->save();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Categoria $categoria)
-    {
-        //
-    }
+       return response()->json(["result" => "ok"], 201);
+   }
+
+    public function update(Request $request, $categoriaId)
+   {
+       $categoria = categoria::find($categoriaId);
+       $categoria->nombre_categoria = $request->nombre_categoria;
+       $categoria->save();
+
+       return response()->json(["result" => "ok"], 201);       
+   }
+
+   public function destroy($categoriaId)
+   {
+    $categoria = categoria::find($categoriaId);
+    $categoria->delete();
+
+    return response()->json(["result" => "ok"], 200);       
+   }
 }

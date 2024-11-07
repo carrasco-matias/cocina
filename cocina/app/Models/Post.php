@@ -4,9 +4,9 @@ namespace App\Models;
 
 use MongoDB\Laravel\Eloquent\Model;
 
-class Receta extends Model
+class Post extends Model
 {
    protected $connection = 'mongodb';
-   protected $collection = 'recetas';
+   protected $collection = 'posts';
    public $timestamps = false;
 }
