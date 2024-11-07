@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\IngredienteController;
 use App\Http\Controllers\RecetaController;
+use App\Http\Controllers\RecetasCategoriaController;
 use App\Http\Controllers\RecetasComentarioController;
 use App\Http\Controllers\RecetasIngredienteController;
 
@@ -109,6 +110,28 @@ use App\Http\Controllers\RecetasIngredienteController;
 
    //GET BUSCAR POR USUARIO
    Route::get('recetas/search/{autor_id}', [RecetaController::class, 'search_autor']);
+
+
+/******************* RECETAS CATEGORIA ********************/
+
+
+   //GET ID ESPECIFICO
+   Route::get('recetas_categoria/get/{id}', [RecetasCategoriaController::class, 'index']);
+
+   //GET TODOS O UN ID EN ESPECIFICO
+   Route::get('recetas_categoria/get/{id?}', [RecetasCategoriaController::class, 'get']);
+
+   //POST AGREGAR
+   Route::post('recetas_categoria/add', [RecetasCategoriaController::class, 'add']);
+
+   //PUT
+   Route::put('recetas_categoria/update', [RecetasCategoriaController::class, 'update']);
+
+   //DELETE
+   Route::delete('recetas_categoria/delete/{id}', [RecetasCategoriaController::class, 'delete']);
+
+   //GET BUSCAR POR RECETA
+   Route::get('recetas_categoria/search/{ID_Categoria}', [RecetasCategoriaController::class, 'search_categoria']);
 
 
 /******************* RECETAS COMENTARIOS ********************/

@@ -57,11 +57,6 @@ class RecetasCategoriaController extends Controller
             return ["Result" => "Failed"];
         }
     }
-    // Search data in studentdata
-    public function search_receta($ID_Receta)
-    {
-        return RecetasCategoria::where("ID_Receta", $ID_Receta)->get();
-    }
 
     // Search data in studentdata
     public function search_categoria($ID_Categoria)
