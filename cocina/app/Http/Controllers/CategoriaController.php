@@ -7,37 +7,59 @@ use App\Models\Categoria;
 
 class CategoriaController extends Controller
 {
-    public function show($id)
-   {
-       return view('categoria', [
-           'categoria' => categoria::where('id', '=', $id)->first()
-       ]);
-   }
+    //Get data from student data by id
+    public function index($id)
+    {
+        return Categoria::where("_id", $id)->first();
+    }
 
-   public function store(Request $request)
-   {
-       $categoria = new categoria;
+    //Get data from studentdata by id(optional)
+    public function get($id = null)
+    {
+        return ($id) ? Categoria::where("_id", $id)->first() : Categoria::all();
+    }
 
-       $categoria->nombre_categoria = $request->nombre_categoria;
-       $categoria->save();
+    // Add data into studentdata by JSON format
+    public function add(Request $request)
+    {
+        $apidata = new Categoria;
+        $apidata->nombre = $request->nombre;
 
-       return response()->json(["result" => "ok"], 201);
-   }
+        if ($apidata->save()) {
+            return ["Result" => "Done"];
+        } else {
+            return ["Result" => "Failed"];
+        }
+    }
 
-    public function update(Request $request, $categoriaId)
-   {
-       $categoria = categoria::find($categoriaId);
-       $categoria->nombre_categoria = $request->nombre_categoria;
-       $categoria->save();
+    public function update(Request $request)
+    {
+        //Buscar comentario
+        $apidata = Categoria::where("_id", $request->id)->first();
+        
+        $apidata->nombre = $request->nombre;
 
-       return response()->json(["result" => "ok"], 201);       
-   }
+        if ($apidata->save()) {
+            return ["Result" => "Updated"];
+        } else {
+            return ["Result" => "Failed"];
+        }
+    }
 
-   public function destroy($categoriaId)
-   {
-    $categoria = categoria::find($categoriaId);
-    $categoria->delete();
+    // Delete data into studentdata by data in JSON format
+    public function delete($id)
+    {
+        $apidata = Categoria::where("_id", $id)->first();
 
-    return response()->json(["result" => "ok"], 200);       
-   }
+        if ($apidata->delete()) {
+            return ["Result" => "Deleted"];
+        } else {
+            return ["Result" => "Failed"];
+        }
+    }
+    // Search data in studentdata
+    public function search($search)
+    {
+        return Categoria::where("nombre", "like", "%$search%")->get();
+    }
 }

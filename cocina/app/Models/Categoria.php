@@ -8,5 +8,7 @@ class Categoria extends Model
 {
     protected $connection = 'mongodb';
     protected $collection = 'categorias';
+    protected $primaryKey = 'nombre';
+    protected $keyType = 'string';
     public $timestamps = false;
 }
