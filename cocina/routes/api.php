@@ -7,7 +7,7 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\IngredienteController;
 use App\Http\Controllers\RecetaController;
-use App\Http\Controllers\RecetasCategoriaController;
+use App\Http\Controllers\RecetasComentarioController;
 use App\Http\Controllers\RecetasIngredienteController;
 
 
@@ -111,32 +111,26 @@ use App\Http\Controllers\RecetasIngredienteController;
    Route::get('recetas/search/{autor_id}', [RecetaController::class, 'search_autor']);
 
 
-/******************* RECETAS CATEGORIAS ********************/
+/******************* RECETAS COMENTARIOS ********************/
 
 
    //GET ID ESPECIFICO
-   Route::get('recetas_categorias/get/{id}', [RecetasCategoriaController::class, 'index']);
+   Route::get('recetas_comentarios/get/{id}', [RecetasComentarioController::class, 'index']);
 
    //GET TODOS O UN ID EN ESPECIFICO
-   Route::get('recetas_categorias/get/{id?}', [RecetasCategoriaController::class, 'get']);
+   Route::get('recetas_comentarios/get/{id?}', [RecetasComentarioController::class, 'get']);
 
    //POST AGREGAR
-   Route::post('recetas_categorias/add', [RecetasCategoriaController::class, 'add']);
+   Route::post('recetas_comentarios/add', [RecetasComentarioController::class, 'add']);
 
    //PUT
-   Route::put('recetas_categorias/update', [RecetasCategoriaController::class, 'update']);
+   Route::put('recetas_comentarios/update', [RecetasComentarioController::class, 'update']);
 
    //DELETE
-   Route::delete('recetas_categorias/delete/{id}', [RecetasCategoriaController::class, 'delete']);
-
-   //GET SEARCH
-   Route::get('recetas_categorias/search/{search}', [RecetasCategoriaController::class, 'search']);
-
-   //GET BUSCAR POR CATEGORIA
-   Route::get('recetas_categorias/search/{ID_Categoria}', [RecetasCategoriaController::class, 'search_categoria']);
+   Route::delete('recetas_comentarios/delete/{id}', [RecetasComentarioController::class, 'delete']);
 
    //GET BUSCAR POR RECETA
-   Route::get('recetas_categorias/search/{ID_Receta}', [RecetasCategoriaController::class, 'search_receta']);
+   Route::get('recetas_comentarios/search/{ID_Receta}', [RecetasComentarioController::class, 'search_receta']);
 
 
 /******************* RECETAS INGREDIENTES ********************/
@@ -156,12 +150,6 @@ use App\Http\Controllers\RecetasIngredienteController;
 
    //DELETE
    Route::delete('recetas_ingredientes/delete/{id}', [RecetasIngredienteController::class, 'delete']);
-
-   //GET SEARCH
-   Route::get('recetas_ingredientes/search/{search}', [RecetasIngredienteController::class, 'search']);
-
-   //GET BUSCAR POR INGREDIENTE
-   Route::get('recetas_ingredientes/search/{ID_Ingredientes}', [RecetasIngredienteController::class, 'search_ingrediente']);
 
    //GET BUSCAR POR RECETA
    Route::get('recetas_ingredientes/search/{ID_Receta}', [RecetasIngredienteController::class, 'search_receta']);
