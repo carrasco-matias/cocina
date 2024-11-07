@@ -26,9 +26,9 @@ class CategoriaController extends Controller
         $apidata->nombre = $request->nombre;
 
         if ($apidata->save()) {
-            return ["Result" => "Done"];
+            return ["Result" => "Categoria creada"];
         } else {
-            return ["Result" => "Failed"];
+            return ["Result" => "Error"];
         }
     }
 
@@ -40,9 +40,9 @@ class CategoriaController extends Controller
         $apidata->nombre = $request->nombre;
 
         if ($apidata->save()) {
-            return ["Result" => "Updated"];
+            return ["Result" => "Categoria actualizada"];
         } else {
-            return ["Result" => "Failed"];
+            return ["Result" => "Error"];
         }
     }
 
@@ -52,14 +52,14 @@ class CategoriaController extends Controller
         $apidata = Categoria::where("_id", $id)->first();
 
         if ($apidata->delete()) {
-            return ["Result" => "Deleted"];
+            return ["Result" => "Categoria eliminada"];
         } else {
-            return ["Result" => "Failed"];
+            return ["Result" => "Error"];
         }
     }
     // Search data in studentdata
-    public function search($search)
+    public function search($nombre_categoria)
     {
-        return Categoria::where("nombre", "like", "%$search%")->get();
+        return Categoria::where("nombre", "like", "%$nombre_categoria%")->get();
     }
 }

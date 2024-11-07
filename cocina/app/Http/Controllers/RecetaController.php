@@ -24,18 +24,20 @@ class RecetaController extends Controller
     public function add(Request $request)
     {
         $apidata = new Receta;
-        $apidata->autor_id = $request->autor_id;
+        $apidata->nombre_usuario = $request->nombre_usuario;
         $apidata->nombre_receta = $request->nombre_receta;
+        $apidata->nombre_categoria = $request->nombre_categoria;
         $apidata->tiempo_preparacion = $request->tiempo_preparacion;
         $apidata->instrucciones = $request->instrucciones;
         $apidata->descripcion = $request->descripcion;
         $apidata->calificacion = $request->calificacion;
         $apidata->fecha_creacion = $request->fecha_creacion;
+        $apidata->ingredientes = $request->ingredientes;
 
         if ($apidata->save()) {
-            return ["Result" => "Done"];
+            return ["Result" => "Receta creada"];
         } else {
-            return ["Result" => "Failed"];
+            return ["Result" => "Error"];
         }
     }
 
@@ -44,18 +46,20 @@ class RecetaController extends Controller
         //Buscar Receta
         $apidata = Receta::where("_id", $request->id)->first();
         
-        $apidata->autor_id = $request->autor_id;
+        $apidata->nombre_usuario = $request->nombre_usuario;
         $apidata->nombre_receta = $request->nombre_receta;
+        $apidata->nombre_categoria = $request->nombre_categoria;
         $apidata->tiempo_preparacion = $request->tiempo_preparacion;
         $apidata->instrucciones = $request->instrucciones;
         $apidata->descripcion = $request->descripcion;
         $apidata->calificacion = $request->calificacion;
         $apidata->fecha_creacion = Carbon::now()->toDateTimeString();
+        $apidata->ingredientes = $request->ingredientes;
         
         if ($apidata->save()) {
-            return ["Result" => "Updated"];
+            return ["Result" => "Receta actualizada"];
         } else {
-            return ["Result" => "Failed"];
+            return ["Result" => "Error"];
         }
     }
 
@@ -65,9 +69,9 @@ class RecetaController extends Controller
         $apidata = Receta::where("_id", $id)->first();
 
         if ($apidata->delete()) {
-            return ["Result" => "Deleted"];
+            return ["Result" => "Receta eliminada"];
         } else {
-            return ["Result" => "Failed"];
+            return ["Result" => "Error"];
         }
     }
 
@@ -78,8 +82,20 @@ class RecetaController extends Controller
     }
 
     // Search data in studentdata
-    public function search_autor($autor_id)
+    public function search_usuario($nombre_usuario)
     {
-        return Receta::where("autor_id", "like", "%$autor_id%")->get();
+        return Receta::where("nombre_usuario", "like", "%$nombre_usuario%")->get();
+    }
+
+    // Search data in studentdata
+    public function search_categoria($nombre_categoria)
+    {
+        return Receta::where("nombre_categoria", "like", "%$nombre_categoria%")->get();
+    }
+
+    // Search data in studentdata
+    public function search_ingredientes($nombre_receta)
+    {
+        return Receta::where("nombre_receta", "like", "%$nombre_categoria%")->pluck('ingredientes')->get();
     }
 }

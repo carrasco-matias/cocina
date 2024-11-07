@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comentario;
+use App\Models\User;
+use App\Models\Receta;
+use App\Models\RecetasComentario;
+
+
 use Carbon\Carbon;
 
 class ComentarioController extends Controller
@@ -25,15 +30,15 @@ class ComentarioController extends Controller
     public function add(Request $request)
     {
         $apidata = new Comentario;
-        $apidata->ID_Usuario = $request->ID_Usuario;
-        $apidata->ID_Receta = $request->ID_Receta;
+        $apidata->nombre_usuario = $request->nombre_usuario;
+        $apidata->nombre_receta = $request->nombre_receta;
         $apidata->contenido = $request->contenido;
         $apidata->fecha_comentario = $request->fecha_comentario;
 
         if ($apidata->save()) {
-            return ["Result" => "Done"];
+            return ["Result" => "Comentario creado"];
         } else {
-            return ["Result" => "Failed"];
+            return ["Result" => "Error"];
         }
     }
 
@@ -42,15 +47,15 @@ class ComentarioController extends Controller
         //Buscar comentario
         $apidata = Comentario::where("_id", $request->id)->first();
         
-        $apidata->ID_Usuario = $request->ID_Usuario;
-        $apidata->ID_Receta = $request->ID_Receta;
+        $apidata->nombre_usuario = $request->nombre_usuario;
+        $apidata->nombre_receta = $request->nombre_receta;
         $apidata->contenido = $request->contenido;
         $apidata->fecha_comentario = Carbon::now()->toDateTimeString();
         
         if ($apidata->save()) {
-            return ["Result" => "Updated"];
+            return ["Result" => "Comentario actualizado"];
         } else {
-            return ["Result" => "Failed"];
+            return ["Result" => "Error"];
         }
     }
 
@@ -60,20 +65,20 @@ class ComentarioController extends Controller
         $apidata = Comentario::where("_id", $id)->first();
 
         if ($apidata->delete()) {
-            return ["Result" => "Deleted"];
+            return ["Result" => "Comentario eliminado"];
         } else {
-            return ["Result" => "Failed"];
+            return ["Result" => "Error"];
         }
     }
     // Search data in studentdata
-    public function search_usuario($usuario)
+    public function search_usuario($nombre_usuario)
     {
-        return Comentario::where("ID_Usuario", "like", "%$usuario%")->get();
+        return Comentario::where("nombre_usuario", "like", "%$nombre_usuario%")->get();
     }
 
     // Search data in studentdata
-    public function search_receta($receta)
+    public function search_receta($nombre_receta)
     {
-        return Comentario::where("ID_Receta", "like", "%$receta%")->get();
+        return Comentario::where("nombre_receta", "like", "%$nombre_receta%")->get();
     }
 }

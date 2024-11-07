@@ -23,14 +23,13 @@ class IngredienteController extends Controller
     public function add(Request $request)
     {
         $apidata = new Ingrediente;
-        $apidata->nombre_ingrediente = $request->nombre_ingrediente;
+        $apidata->nombre = $request->nombre;
         $apidata->unidad_medida = $request->unidad_medida;
-        $apidata->ID_Categoria = $request->ID_Categoria;
 
         if ($apidata->save()) {
-            return ["Result" => "Done"];
+            return ["Result" => "Ingrediente creado"];
         } else {
-            return ["Result" => "Failed"];
+            return ["Result" => "Error"];
         }
     }
 
@@ -38,14 +37,13 @@ class IngredienteController extends Controller
     {
         //Buscar comentario
         $apidata = Ingrediente::where("_id", $request->id)->first();
-        $apidata->nombre_ingrediente = $request->nombre_ingrediente;
+        $apidata->nombre = $request->nombre;
         $apidata->unidad_medida = $request->unidad_medida;
-        $apidata->ID_Categoria = $request->ID_Categoria;
 
         if ($apidata->save()) {
-            return ["Result" => "Updated"];
+            return ["Result" => "Ingrediente actualizado"];
         } else {
-            return ["Result" => "Failed"];
+            return ["Result" => "Error"];
         }
     }
 
@@ -55,20 +53,14 @@ class IngredienteController extends Controller
         $apidata = Ingrediente::where("_id", $id)->first();
 
         if ($apidata->delete()) {
-            return ["Result" => "Deleted"];
+            return ["Result" => "Ingrediente eliminado"];
         } else {
-            return ["Result" => "Failed"];
+            return ["Result" => "Error"];
         }
     }
     // Search data in studentdata
-    public function search($search)
+    public function search($nombre_ingrediente)
     {
-        return Ingrediente::where("nombre_ingrediente", "like", "%$search%")->get();
-    }
-
-    // Search data in studentdata
-    public function search_categoria($ID_Categoria)
-    {
-        return Comentario::where("ID_Categoria", $ID_Categoria)->first();
+        return Ingrediente::where("nombre", "like", "%$nombre_ingrediente%")->get();
     }
 }
