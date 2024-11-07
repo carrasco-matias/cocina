@@ -4,177 +4,170 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CategoriaController;
-use App\Http\Controllers\CategoriasRecetaController;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\IngredienteController;
-use App\Http\Controllers\IngredientesRecetaController;
 use App\Http\Controllers\RecetaController;
+use App\Http\Controllers\RecetasCategoriaController;
+use App\Http\Controllers\RecetasIngredienteController;
 
 
 /******************* CATEGORIAS ********************/
 
 
-//GET ID ESPECIFICO
-Route::get('categorias/get/{id}', [CategoriaController::class, 'index']);
+   //GET ID ESPECIFICO
+   Route::get('categorias/get/{id}', [CategoriaController::class, 'index']);
 
-//GET TODOS O UN ID EN ESPECIFICO
-Route::get('categorias/get/{id?}', [CategoriaController::class, 'get']);
+   //GET TODOS O UN ID EN ESPECIFICO
+   Route::get('categorias/get/{id?}', [CategoriaController::class, 'get']);
 
-//POST AGREGAR
-Route::post('categorias/add', [CategoriaController::class, 'add']);
+   //POST AGREGAR
+   Route::post('categorias/add', [CategoriaController::class, 'add']);
 
-//PUT
-Route::put('categorias/update', [CategoriaController::class, 'update']);
+   //PUT
+   Route::put('categorias/update', [CategoriaController::class, 'update']);
 
-//DELETE
-Route::delete('categorias/delete/{id}', [CategoriaController::class, 'delete']);
+   //DELETE
+   Route::delete('categorias/delete/{id}', [CategoriaController::class, 'delete']);
 
-//GET SEARCH
-Route::get('categorias/search/{search}', [CategoriaController::class, 'search']);
+   //GET SEARCH
+   Route::get('categorias/search/{search}', [CategoriaController::class, 'search']);
 
 
 /******************* COMENTARIOS ********************/
 
 
-//GET ID ESPECIFICO
-Route::get('comentarios/get/{id}', [ComentarioController::class, 'index']);
+   //GET ID ESPECIFICO
+   Route::get('comentarios/get/{id}', [ComentarioController::class, 'index']);
 
-//GET TODOS O UN ID EN ESPECIFICO
-Route::get('comentarios/get/{id?}', [ComentarioController::class, 'get']);
+   //GET TODOS O UN ID EN ESPECIFICO
+   Route::get('comentarios/get/{id?}', [ComentarioController::class, 'get']);
 
-//POST AGREGAR
-Route::post('comentarios/add', [ComentarioController::class, 'add']);
+   //POST AGREGAR
+   Route::post('comentarios/add', [ComentarioController::class, 'add']);
 
-//PUT
-Route::put('comentarios/update', [ComentarioController::class, 'update']);
+   //PUT
+   Route::put('comentarios/update', [ComentarioController::class, 'update']);
 
-//DELETE
-Route::delete('comentarios/delete/{id}', [ComentarioController::class, 'delete']);
+   //DELETE
+   Route::delete('comentarios/delete/{id}', [ComentarioController::class, 'delete']);
 
-//GET BUSCAR POR USUARIO
-Route::get('comentarios/search/{usuario}', [ComentarioController::class, 'search_usuario']);
+   //GET BUSCAR POR USUARIO
+   Route::get('comentarios/search/{usuario}', [ComentarioController::class, 'search_usuario']);
 
-//GET BUSCAR POR RECETA
-Route::get('comentarios/search/{receta}', [ComentarioController::class, 'search_receta']);
-
-
-/******************* CATEGORIAS RECETAS ********************/
-
-
-//GET ID ESPECIFICO
-Route::get('categorias_recetas/get/{id}', [CategoriasRecetaController::class, 'index']);
-
-//GET TODOS O UN ID EN ESPECIFICO
-Route::get('categorias_recetas/get/{id?}', [CategoriasRecetaController::class, 'get']);
-
-//POST AGREGAR
-Route::post('categorias_recetas/add', [CategoriasRecetaController::class, 'add']);
-
-//PUT
-Route::put('categorias_recetas/update', [CategoriasRecetaController::class, 'update']);
-
-//DELETE
-Route::delete('categorias_recetas/delete/{id}', [CategoriasRecetaController::class, 'delete']);
-
-//GET SEARCH
-Route::get('categorias_recetas/search/{search}', [CategoriasRecetaController::class, 'search']);
+   //GET BUSCAR POR RECETA
+   Route::get('comentarios/search/{receta}', [ComentarioController::class, 'search_receta']);
 
 
 /******************* INGREDIENTES ********************/
 
 
-//GET ID ESPECIFICO
-Route::get('ingredientes/get/{id}', [IngredienteController::class, 'index']);
+   //GET ID ESPECIFICO
+   Route::get('ingredientes/get/{id}', [IngredienteController::class, 'index']);
 
-//GET TODOS O UN ID EN ESPECIFICO
-Route::get('ingredientes/get/{id?}', [IngredienteController::class, 'get']);
+   //GET TODOS O UN ID EN ESPECIFICO
+   Route::get('ingredientes/get/{id?}', [IngredienteController::class, 'get']);
 
-//POST AGREGAR
-Route::post('ingredientes/add', [IngredienteController::class, 'add']);
+   //POST AGREGAR
+   Route::post('ingredientes/add', [IngredienteController::class, 'add']);
 
-//PUT
-Route::put('ingredientes/update', [IngredienteController::class, 'update']);
+   //PUT
+   Route::put('ingredientes/update', [IngredienteController::class, 'update']);
 
-//DELETE
-Route::delete('ingredientes/delete/{id}', [IngredienteController::class, 'delete']);
+   //DELETE
+   Route::delete('ingredientes/delete/{id}', [IngredienteController::class, 'delete']);
 
-//GET SEARCH
-Route::get('ingredientes/search/{search}', [IngredienteController::class, 'search']);
+   //GET SEARCH
+   Route::get('ingredientes/search/{search}', [IngredienteController::class, 'search']);
 
+   //GET BUSCAR POR USUARIO
+   Route::get('ingredientes/search/{ID_Categoria}', [IngredienteController::class, 'search_categoria']);
 
-/******************* INGREDIENTES RECETAS ********************/
-
-
-//GET ID ESPECIFICO
-Route::get('ingredientes_recetas/get/{id}', [IngredientesRecetaController::class, 'index']);
-
-//GET TODOS O UN ID EN ESPECIFICO
-Route::get('ingredientes_recetas/get/{id?}', [IngredientesRecetaController::class, 'get']);
-
-//POST AGREGAR
-Route::post('ingredientes_recetas/add', [IngredientesRecetaController::class, 'add']);
-
-//PUT
-Route::put('ingredientes_recetas/update', [IngredientesRecetaController::class, 'update']);
-
-//DELETE
-Route::delete('ingredientes_recetas/delete/{id}', [IngredientesRecetaController::class, 'delete']);
-
-//GET SEARCH
-Route::get('ingredientes_recetas/search/{search}', [IngredientesRecetaController::class, 'search']);
+   //GET BUSCAR POR RECETA
+   Route::get('ingredientes/search/{ID_Receta}', [IngredienteController::class, 'search_receta']);
 
 
 /******************* RECETAS ********************/
 
 
-//GET ID ESPECIFICO
-Route::get('recetas/get/{id}', [RecetaController::class, 'index']);
+   //GET ID ESPECIFICO
+   Route::get('recetas/get/{id}', [RecetaController::class, 'index']);
 
-//GET TODOS O UN ID EN ESPECIFICO
-Route::get('recetas/get/{id?}', [RecetaController::class, 'get']);
+   //GET TODOS O UN ID EN ESPECIFICO
+   Route::get('recetas/get/{id?}', [RecetaController::class, 'get']);
 
-//POST AGREGAR
-Route::post('recetas/add', [RecetaController::class, 'add']);
+   //POST AGREGAR
+   Route::post('recetas/add', [RecetaController::class, 'add']);
 
-//PUT
-Route::put('recetas/update', [RecetaController::class, 'update']);
+   //PUT
+   Route::put('recetas/update', [RecetaController::class, 'update']);
 
-//DELETE
-Route::delete('recetas/delete/{id}', [RecetaController::class, 'delete']);
+   //DELETE
+   Route::delete('recetas/delete/{id}', [RecetaController::class, 'delete']);
 
-//GET SEARCH
-Route::get('recetas/search/{search}', [RecetaController::class, 'search']);
+   //GET SEARCH
+   Route::get('recetas/search/{nombre_receta}', [RecetaController::class, 'search_receta']);
+
+   //GET BUSCAR POR USUARIO
+   Route::get('recetas/search/{autor_id}', [RecetaController::class, 'search_autor']);
+
+
+/******************* RECETAS CATEGORIAS ********************/
+
+
+   //GET ID ESPECIFICO
+   Route::get('recetas_categorias/get/{id}', [RecetasCategoriaController::class, 'index']);
+
+   //GET TODOS O UN ID EN ESPECIFICO
+   Route::get('recetas_categorias/get/{id?}', [RecetasCategoriaController::class, 'get']);
+
+   //POST AGREGAR
+   Route::post('recetas_categorias/add', [RecetasCategoriaController::class, 'add']);
+
+   //PUT
+   Route::put('recetas_categorias/update', [RecetasCategoriaController::class, 'update']);
+
+   //DELETE
+   Route::delete('recetas_categorias/delete/{id}', [RecetasCategoriaController::class, 'delete']);
+
+   //GET SEARCH
+   Route::get('recetas_categorias/search/{search}', [RecetasCategoriaController::class, 'search']);
+
+   //GET BUSCAR POR CATEGORIA
+   Route::get('recetas_categorias/search/{ID_Categoria}', [RecetasCategoriaController::class, 'search_categoria']);
+
+   //GET BUSCAR POR RECETA
+   Route::get('recetas_categorias/search/{ID_Receta}', [RecetasCategoriaController::class, 'search_receta']);
+
+
+/******************* RECETAS INGREDIENTES ********************/
+
+
+   //GET ID ESPECIFICO
+   Route::get('recetas_ingredientes/get/{id}', [RecetasIngredienteController::class, 'index']);
+
+   //GET TODOS O UN ID EN ESPECIFICO
+   Route::get('recetas_ingredientes/get/{id?}', [RecetasIngredienteController::class, 'get']);
+
+   //POST AGREGAR
+   Route::post('recetas_ingredientes/add', [RecetasIngredienteController::class, 'add']);
+
+   //PUT
+   Route::put('recetas_ingredientes/update', [RecetasIngredienteController::class, 'update']);
+
+   //DELETE
+   Route::delete('recetas_ingredientes/delete/{id}', [RecetasIngredienteController::class, 'delete']);
+
+   //GET SEARCH
+   Route::get('recetas_ingredientes/search/{search}', [RecetasIngredienteController::class, 'search']);
+
+   //GET BUSCAR POR INGREDIENTE
+   Route::get('recetas_ingredientes/search/{ID_Ingredientes}', [RecetasIngredienteController::class, 'search_ingrediente']);
+
+   //GET BUSCAR POR RECETA
+   Route::get('recetas_ingredientes/search/{ID_Receta}', [RecetasIngredienteController::class, 'search_receta']);
 
 
 /*
-use App\Http\Controllers\PostController;
-Route::resource('posts', PostController::class)->only([
-   'destroy', 'show', 'store', 'update'
-]);
-*/
-
-
-//use App\Http\Controllers\StudentApiController;
-
-
-/*
-//GET ID ESPECIFICO
-Route::get('getdata/{id}', [StudentApiController::class, 'index']);
-
-//GET TODOS O UN ID EN ESPECIFICO
-Route::get('get/{id?}', [StudentApiController::class, 'getdata']);
-
-//POST AGREGAR
-Route::post('add', [StudentApiController::class, 'adddata']);
-
-//PUT
-Route::put('update', [StudentApiController::class, 'updatedata']);
-
-//DELETE
-Route::delete('delete/{id}', [StudentApiController::class, 'deletedata']);
-
-//GET SEARCH
-Route::get('search/{search}', [StudentApiController::class, 'searchdata']);
 
 Route::get('/user', function (Request $request) {
     return $request->user();

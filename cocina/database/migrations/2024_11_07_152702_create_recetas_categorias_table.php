@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comentarios__recetas', function (Blueprint $table) {
+        Schema::create('recetas_categorias', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -22,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comentarios__recetas');
+        Schema::dropIfExists('recetas_categorias');
     }
 };
