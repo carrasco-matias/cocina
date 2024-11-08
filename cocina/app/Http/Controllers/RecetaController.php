@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Receta;
+use App\Models\Ingrediente;
 use Carbon\Carbon;
 
 class RecetaController extends Controller
@@ -96,6 +97,7 @@ class RecetaController extends Controller
     // Search data in studentdata
     public function search_ingredientes($nombre_receta)
     {
-        return Receta::where("nombre_receta", "like", "%$nombre_categoria%")->pluck('ingredientes')->get();
+        $ingredientes = Receta::where("nombre_receta", "like", "%$nombre_receta%")->pluck('ingredientes')->flatten();   
+        return Ingrediente::whereIn('nombre', $ingredientes)->get();
     }
 }
