@@ -11,6 +11,7 @@ Route::get('/', function () {
 Route::get('/post/{slug}', [PostController::class, 'show']);
 
 Route::get('/dashboard', function () {
+    Auth::user()->createToken('dev-access');
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 

@@ -71,6 +71,16 @@ return [
             ],
         ],
 
+        'mongodb' => [
+            'driver' => 'mongodb',
+            'connection' => 'mongodb',
+            'collection' => 'cache',
+            'lock_connection' => 'mongodb',
+            'lock_collection' => 'cache_locks',
+            'lock_lottery' => [2, 100],
+            'lock_timeout' => 86400,
+        ],
+
         'redis' => [
             'driver' => 'redis',
             'connection' => env('REDIS_CACHE_CONNECTION', 'cache'),
