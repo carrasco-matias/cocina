@@ -17,7 +17,7 @@ class ApiTokenController extends Controller
     public function update($id)
     {
         $token = Str::random(60);
-        $user = User::where("_id", $id)->first();
+        $user = User::where("id", $id)->first();
         $user->forceFill([
             'api_token' => hash('sha256', $token),
         ])->save();
