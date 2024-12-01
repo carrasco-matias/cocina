@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Controllers\ProfileController;
 use Illuminate\Http\Request;
 use App\Models\Receta;
-use App\Models\Ingrediente;
+use App\Models\Categoria;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class RecetaController extends Controller
 {
@@ -19,6 +20,29 @@ class RecetaController extends Controller
     public function get($id = null)
     {
         return ($id) ? Receta::where("_id", $id)->first() : Receta::all();
+    }
+
+        //Get data from studentdata by id(optional)
+    public function show($nombre)
+    {   
+        $receta = Receta::where("nombre_receta", $nombre)->first();
+        return view('recetas.show', compact('receta'));
+    }
+
+            //Get data from studentdata by id(optional)
+    public function editar($nombre)
+    {   
+        $receta = Receta::where("nombre_receta", $nombre)->first();
+        return view('recetas.edit', compact('receta'));
+    }
+
+    public function user_dashboard()
+    {
+        Auth::user()->createToken('dev-access');
+        $recetas_usuario = Receta::where("nombre_usuario", "like", Auth::user()->name)->get();
+        $recetas = Receta::all();
+        $categorias = Categoria::all();
+        return view('dashboard', compact('recetas_usuario', 'recetas', 'categorias'));
     }
 
     // Add data into studentdata by JSON format

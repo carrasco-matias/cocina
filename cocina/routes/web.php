@@ -2,18 +2,20 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\RecetaController;
 
 Route::get('/', function () {
+
     return view('auth.register');
 });
 
-Route::get('/post/{slug}', [PostController::class, 'show']);
+Route::get('/dashboard', [RecetaController::class, 'user_dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/dashboard', function () {
-    Auth::user()->createToken('dev-access');
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+//GET TODOS O UN ID EN ESPECIFICO
+Route::get('recetas/{nombre}', [RecetaController::class, 'show']);
+Route::get('recetas/{nombre}/editar', [RecetaController::class, 'editar']);
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
