@@ -1,10 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-   <title>MyBlog</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  @vite('resources/css/app.css')
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 </head>
 <body>
-   <h1>{{$post->title}}</h1>
-   <div>{{$post->body}}</div>
+  <h1 class="text-3xl font-bold underline">
+    Hello world!
+  </h1>
 </body>
 </html>
