@@ -15,6 +15,11 @@ Route::get('/dashboard', [RecetaController::class, 'user_dashboard'])->middlewar
 Route::get('recetas/{nombre}', [RecetaController::class, 'show']);
 Route::get('recetas/{nombre}/editar', [RecetaController::class, 'editar']);
 
+//PUT
+Route::put('recetas/editado', [RecetaController::class, 'editado']);
+//DELETE
+Route::delete('recetas/eliminado/{id}', [RecetaController::class, 'eliminado']);
+
 
 
 Route::middleware('auth')->group(function () {
