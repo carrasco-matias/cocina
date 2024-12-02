@@ -14,7 +14,8 @@ Route::get('/dashboard', [RecetaController::class, 'user_dashboard'])->middlewar
 //GET TODOS O UN ID EN ESPECIFICO
 Route::get('recetas/{nombre}', [RecetaController::class, 'show']);
 Route::get('recetas/{nombre}/editar', [RecetaController::class, 'editar']);
-
+Route::get('crear/recetas/', [RecetaController::class, 'crear']);
+Route::post('recetas/creado', [RecetaController::class, 'creado']);
 //PUT
 Route::put('recetas/editado', [RecetaController::class, 'editado']);
 //DELETE

@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Http\Request;
 use App\Models\Receta;
 use App\Models\Categoria;
+use App\Models\Ingrediente;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,11 +30,41 @@ class RecetaController extends Controller
         return view('recetas.show', compact('receta'));
     }
 
+    public function crear()
+    {   
+        $ingredientes = Ingrediente::all();
+        $categorias = Categoria::all();
+        return view('recetas.create', compact('ingredientes', 'categorias'));
+    }
+
+    public function creado(Request $request)
+    {   
+        $apidata = new Receta;
+        $apidata->nombre_usuario = Auth::user()->name;
+        $apidata->nombre_receta = $request->nombre_receta;
+        $apidata->nombre_categoria = $request->nombre_categoria;
+        $apidata->tiempo_preparacion = $request->tiempo_preparacion;
+        $apidata->instrucciones = $request->instrucciones;
+        $apidata->descripcion = $request->descripcion;
+        $apidata->calificacion = "1";
+        $apidata->fecha_creacion = Carbon::now()->toDateTimeString();
+        $apidata->ingredientes = $request->ingredientes;
+
+        if ($apidata->save()) {
+            $receta = $apidata;
+            return view('recetas.show', compact('receta'));
+        } else {
+            return ["Result" => "Error"];
+        }
+    }
+
             //Get data from studentdata by id(optional)
     public function editar($nombre)
     {   
         $receta = Receta::where("nombre_receta", $nombre)->first();
-        return view('recetas.edit', compact('receta'));
+        $ingredientes = Ingrediente::all();
+        $categorias = Categoria::all();
+        return view('recetas.edit', compact('receta', 'ingredientes', 'categorias'));
     }
 
     public function user_dashboard()
@@ -90,22 +121,18 @@ class RecetaController extends Controller
 
     public function editado(Request $request)
     {
-        dd("EDITADO");
         //Buscar Receta
         $apidata = Receta::where("_id", $request->id)->first();
-        
-        $apidata->nombre_usuario = $request->nombre_usuario;
         $apidata->nombre_receta = $request->nombre_receta;
         $apidata->nombre_categoria = $request->nombre_categoria;
-        $apidata->tiempo_preparacion = $request->tiempo_preparacion;
-        $apidata->instrucciones = $request->instrucciones;
         $apidata->descripcion = $request->descripcion;
-        $apidata->calificacion = $request->calificacion;
-        $apidata->fecha_creacion = Carbon::now()->toDateTimeString();
+        $apidata->tiempo_preparacion = $request->tiempo_preparacion;
         $apidata->ingredientes = $request->ingredientes;
+        $apidata->instrucciones = $request->instrucciones;
         
         if ($apidata->save()) {
-            return ["Result" => "Receta actualizada"];
+            $receta = $apidata;
+            return view('recetas.show', compact('receta'));
         } else {
             return ["Result" => "Error"];
         }
@@ -126,11 +153,10 @@ class RecetaController extends Controller
     // Delete data into studentdata by data in JSON format
     public function eliminado($id)
     {
-        dd("ELIMINADO");
         $apidata = Receta::where("_id", $id)->first();
 
         if ($apidata->delete()) {
-            return ["Result" => "Receta eliminada"];
+            return redirect('/dashboard');
         } else {
             return ["Result" => "Error"];
         }
