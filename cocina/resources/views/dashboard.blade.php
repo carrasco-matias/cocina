@@ -12,8 +12,8 @@
     </div>
     @endif
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 py-12">
+        <div class="px-2">
             @if($recetas_usuario->count() >= 1)
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">     
@@ -62,6 +62,8 @@
                 </div>
             </div>
             @endif
+        </div>
+        <div class="px-2">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">     
                     <div class="block mb-4 mx-auto border-b border-slate-300 pb-2 max-w-[360px] text-center">
