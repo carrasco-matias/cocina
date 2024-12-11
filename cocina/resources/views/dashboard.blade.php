@@ -61,6 +61,23 @@
                     </div>                   
                 </div>
             </div>
+            @else
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">     
+                    <div class="block mb-4 mx-auto border-b border-slate-300 pb-2 max-w-[360px] text-center">
+                        <h1>Mis Recetas</h1>
+                        <a class="cursor-pointer font-medium text-blue-600 dark:text-blue-500 hover:underline" href="crear/recetas">Crear</a>
+                    </div>
+                    <br>
+                    <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                        <div class="p-6 text-gray-900 dark:text-gray-100">
+                            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                                Este usuario no tiene recetas creadas
+                            </div>
+                        </div>
+                    </div>                   
+                </div>
+            </div>
             @endif
         </div>
         <div class="px-2">
