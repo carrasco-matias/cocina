@@ -1,18 +1,16 @@
  <x-app-layout>
-    @if(Auth::user()->name == "SuperAdmin")
-    <div class="py-12">
+    <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("Has iniciado sesión, este es tu id:") }}
+                    {{ __("Has iniciado sesión, este es tu id para utilizar la API:") }}
                     {{ Auth::user()->id }}
                 </div>
             </div>
         </div>
     </div>
-    @endif
 
-    <div class="grid grid-cols-2 py-12">
+    <div class="grid grid-cols-2 py-5">
         <div class="px-2">
             @if($recetas_usuario->count() >= 1)
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
